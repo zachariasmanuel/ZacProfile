@@ -1,217 +1,97 @@
-(function($) {
-
-	'use strict';
-
-	// bootstrap dropdown hover
-
-  // loader
-  var loader = function() {
-    setTimeout(function() { 
-      if($('#loader').length > 0) {
-        $('#loader').removeClass('show');
+// ─── Scroll Reveal (IntersectionObserver) ───
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const siblings = entry.target.parentElement.querySelectorAll('.reveal');
+        const siblingIndex = Array.from(siblings).indexOf(entry.target);
+        entry.target.style.transitionDelay = `${siblingIndex * 80}ms`;
+        entry.target.classList.add('reveal--visible');
+        revealObserver.unobserve(entry.target);
       }
-    }, 1);
-  };
-  loader();
+    });
+  },
+  { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+);
+revealElements.forEach((el) => revealObserver.observe(el));
 
-	
-	$('nav .dropdown').hover(function(){
-		var $this = $(this);
-		$this.addClass('show');
-		$this.find('> a').attr('aria-expanded', true);
-		$this.find('.dropdown-menu').addClass('show');
-	}, function(){
-		var $this = $(this);
-			$this.removeClass('show');
-			$this.find('> a').attr('aria-expanded', false);
-			$this.find('.dropdown-menu').removeClass('show');
-	});
+// ─── Nav Scroll State ───
+const nav = document.getElementById('nav');
 
+function updateNav() {
+  if (window.scrollY > 50) {
+    nav.classList.add('nav--scrolled');
+  } else {
+    nav.classList.remove('nav--scrolled');
+  }
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
 
-  var offcanvas_toggle = $('.js-offcanvas-toggle');
-  offcanvas_toggle.on('click', function() {
+// ─── Active Link Tracking ───
+const sections = document.querySelectorAll('.section, .hero');
+const navLinks = document.querySelectorAll('.nav__link[href^="#"]');
 
-
-    if ( $('body').hasClass('offcanvas-open') ) {
-      $('body').removeClass('offcanvas-open');
-    } else {
-      $('body').addClass('offcanvas-open');
-    }
-
-  });
-
-
-  $(document).click(function(e) {
-    var container = $('.js-offcanvas-toggle, #offcanvas_menu');
-    if (!container.is(e.target) && container.has(e.target).length === 0) {
-      if ( $('body').hasClass('offcanvas-open') ) {
-        $('body').removeClass('offcanvas-open');
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach((link) => {
+          link.classList.toggle(
+            'nav__link--active',
+            link.getAttribute('href') === `#${id}`
+          );
+        });
       }
+    });
+  },
+  { threshold: 0.3, rootMargin: '-72px 0px 0px 0px' }
+);
+sections.forEach((section) => sectionObserver.observe(section));
+
+// ─── Mobile Menu Toggle ───
+const navToggle = document.getElementById('navToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileLinks = document.querySelectorAll('.mobile-menu__link');
+
+function toggleMobileMenu() {
+  const isOpen = mobileMenu.classList.toggle('mobile-menu--open');
+  navToggle.classList.toggle('nav__toggle--open', isOpen);
+  navToggle.setAttribute('aria-expanded', isOpen);
+  mobileMenu.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+
+navToggle.addEventListener('click', toggleMobileMenu);
+
+mobileLinks.forEach((link) => {
+  link.addEventListener('click', () => {
+    if (mobileMenu.classList.contains('mobile-menu--open')) {
+      toggleMobileMenu();
     }
   });
-
-
-  $('#date-countdown').countdown('2020/10/10', function(event) {
-  var $this = $(this).html(event.strftime(''
-    + '<span class="countdown-block"><span class="label">%w</span> weeks </span>'
-    + '<span class="countdown-block"><span class="label">%d</span> days </span>'
-    + '<span class="countdown-block"><span class="label">%H</span> hr </span>'
-    + '<span class="countdown-block"><span class="label">%M</span> min </span>'
-    + '<span class="countdown-block"><span class="label">%S</span> sec</span>'));
 });
 
-	// home slider
-	$('.home-slider').owlCarousel({
-    loop:true,
-    autoplay: true,
-    margin:10,
-    animateOut: 'fadeOut',
-    animateIn: 'fadeIn',
-    nav:true,
-    autoplayHoverPause: false,
-    items: 1,
-    navText : ["<span class='ion-chevron-left'></span>","<span class='ion-chevron-right'></span>"],
-    responsive:{
-      0:{
-        items:1,
-        nav:false
-      },
-      600:{
-        items:1,
-        nav:false
-      },
-      1000:{
-        items:1,
-        nav:true
-      }
-    }
-	});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && mobileMenu.classList.contains('mobile-menu--open')) {
+    toggleMobileMenu();
+  }
+});
 
-
-  // home slider
-  $('.testimony-slider').owlCarousel({
-    loop:true,
-    autoplay: true,
-    margin:10,
-    animateOut: 'fadeOut',
-    animateIn: 'fadeIn',
-    nav:false,
-    autoplayHoverPause: false,
-    items: 1,
-    navText : ["<span class='ion-chevron-left'></span>","<span class='ion-chevron-right'></span>"],
-    responsive:{
-      0:{
-        items:1,
-        nav:false
-      },
-      600:{
-        items:1,
-        nav:false
-      },
-      1000:{
-        items:1,
-        nav:false
-      }
+// ─── Smooth Scroll for Anchor Links ───
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener('click', (e) => {
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const navHeight = nav.offsetHeight;
+      const targetPos = target.getBoundingClientRect().top + window.scrollY - navHeight;
+      window.scrollTo({ top: targetPos, behavior: 'smooth' });
     }
   });
+});
 
-	// owl carousel
-	var majorCarousel = $('.js-carousel-1');
-	majorCarousel.owlCarousel({
-    loop:true,
-    autoplay: true,
-    stagePadding: 7,
-    margin: 20,
-    animateOut: 'fadeOut',
-    animateIn: 'fadeIn',
-    nav: true,
-    autoplayHoverPause: true,
-    items: 3,
-    navText : ["<span class='ion-chevron-left'></span>","<span class='ion-chevron-right'></span>"],
-    responsive:{
-      0:{
-        items:1,
-        nav:false
-      },
-      600:{
-        items:2,
-        nav:false
-      },
-      1000:{
-        items:3,
-        nav:true,
-        loop:false
-      }
-  	}
-	});
-
-	// owl carousel
-	var major2Carousel = $('.js-carousel-2');
-	major2Carousel.owlCarousel({
-    loop:true,
-    autoplay: true,
-    stagePadding: 7,
-    margin: 20,
-    animateOut: 'fadeOut',
-    animateIn: 'fadeIn',
-    nav: true,
-    autoplayHoverPause: true,
-    items: 4,
-    navText : ["<span class='ion-chevron-left'></span>","<span class='ion-chevron-right'></span>"],
-    responsive:{
-      0:{
-        items:1,
-        nav:false
-      },
-      600:{
-        items:3,
-        nav:false
-      },
-      1000:{
-        items:4,
-        nav:true,
-        loop:false
-      }
-  	}
-	});
-
-
-	var contentWayPoint = function() {
-		var i = 0;
-		$('.element-animate').waypoint( function( direction ) {
-
-			if( direction === 'down' && !$(this.element).hasClass('element-animated') ) {
-				
-				i++;
-
-				$(this.element).addClass('item-animate');
-				setTimeout(function(){
-
-					$('body .element-animate.item-animate').each(function(k){
-						var el = $(this);
-						setTimeout( function () {
-							var effect = el.data('animate-effect');
-							if ( effect === 'fadeIn') {
-								el.addClass('fadeIn element-animated');
-							} else if ( effect === 'fadeInLeft') {
-								el.addClass('fadeInLeft element-animated');
-							} else if ( effect === 'fadeInRight') {
-								el.addClass('fadeInRight element-animated');
-							} else {
-								el.addClass('fadeInUp element-animated');
-							}
-							el.removeClass('item-animate');
-						},  k * 100);
-					});
-					
-				}, 100);
-				
-			}
-
-		} , { offset: '95%' } );
-	};
-	contentWayPoint();
-
-
-
-})(jQuery);
+// ─── Dynamic Footer Year ───
+document.getElementById('footerYear').textContent = new Date().getFullYear();

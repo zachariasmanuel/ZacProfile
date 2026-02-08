@@ -1,154 +1,352 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-42601089-6"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zacharias Manuel — Technology Enthusiast</title>
+  <meta name="description" content="A technophile by nature, my passion lies at the convergence of technology and entrepreneurship whereby the power of each comes together to create positive impacts in the world. And yes, I am absolutely excited by the possibilities of AI.">
+  <meta name="keywords" content="Zac, Zach, Zacharias, Zacharias Manuel, Profile, Bio, SV, Startup Village, Fin Robotics, Neyya, Flip Motion, Tricog Health, Google Developers Group Cochin, GDG, BlackBerry, Rubus Labs, Elite Developer, Developer, Technical Head, Rethink">
+  <meta name="robots" content="follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Zacharias Manuel — Technology Enthusiast">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="A technophile by nature, my passion lies at the convergence of technology and entrepreneurship whereby the power of each comes together to create positive impacts in the world.">
+  <meta property="og:image" content="https://www.zachariasmanuel.com/img/zac_og.jpg">
+  <meta property="og:url" content="https://www.zachariasmanuel.com">
+
+  <!-- Favicon -->
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- JSON-LD Person Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Zacharias Manuel",
+    "url": "https://www.zachariasmanuel.com",
+    "image": "https://www.zachariasmanuel.com/img/zac_og.jpg",
+    "jobTitle": "AVP - Engineering",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Tricog Health"
+    },
+    "sameAs": [
+      "https://github.com/zachariasmanuel",
+      "https://twitter.com/zacmanuel_",
+      "https://www.linkedin.com/in/zachariasmanuel",
+      "https://www.instagram.com/zachariasmanuel/",
+      "https://stackoverflow.com/users/1112879/zacharias-manuel",
+      "https://blog.zachariasmanuel.com"
+    ]
+  }
+  </script>
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZS5DN2VG9F"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
-    gtag('config', 'UA-42601089-6');
-
-   
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)
-    [0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-42601089-6', 'auto') ; 
+    gtag('config', 'G-ZS5DN2VG9F');
   </script>
-
-
-  <title>Zacharias Manuel Profile</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <meta name="description" content="A technophile by nature, my passion lies at the convergence of technology and entrepreneurship whereby the power of each comes together to create positive impacts in the world. And yes, I am absolutely excited by the possibilities of AI.">
-
-  <meta property="og:title" content="Zacharias Manuel Profile" />
-  <meta property="og:type" content="website" />
-  <meta property="og:description" content="A technophile by nature, my passion lies at the convergence of technology and entrepreneurship whereby the power of each comes together to create positive impacts in the world. And yes, I am absolutely excited by the possibilities of AI." />
-  <meta property="og:image" content="https://www.zachariasmanuel.com/img/zac_og.jpg" />
-  <meta name="robots" content="follow"/>
-  <meta name="keywords" content="Zac, Zach, Zacharias, Zacharias Manuel, Profile, Bio, SV, Startup Village, Fin Robotics, Neyya, Flip Motion, Tricog Health, Google Developers Group Cochin, GDG, BlackBerry, Rubus Labs, Elite Developer, Developer, Technical Head, Rethink"/>
-
-  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"> 
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800|Playfair+Display:,300, 400, 700" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/animate.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/mediaelementplayer.min.css">
-
-  <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
-
-
-  <!-- Theme Style -->
-  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <div class="site-wrap">
+  <!-- Skip to content -->
+  <a href="#about" class="skip-link">Skip to content</a>
 
-    <a href="#" class="offcanvas-toggle js-offcanvas-toggle">Menu</a>
-    <div class="offcanvas_menu" id="offcanvas_menu">
-      <ul class="mb-5">
-        <li class="active"><a href="index.html" onclick="ga('send', 'event', 'navigation', 'bio_side', 'click');">Bio</a></li>
-        <li><a href="https://blog.zachariasmanuel.com" target="_blank" onclick="ga('send', 'event', 'navigation', 'blog_side', 'click');">Blog</a></li>
-        <li><a href="career.html" onclick="ga('send', 'event', 'navigation', 'career_side', 'click');">Career</a></li>
-        <li><a href="https://www.flickr.com/photos/131463254@N07/" target="_blank" onclick="ga('send', 'event', 'navigation', 'gallery_side', 'click');">Photo Gallery</a></li>
-        <li><a href="contact.html" onclick="ga('send', 'event', 'navigation', 'contact_side', 'click');">Contact</a></li>
+  <!-- ─── Navigation ─── -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo" aria-label="Home">ZM</a>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+      </button>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#about" class="nav__link">About</a></li>
+        <li><a href="#career" class="nav__link">Career</a></li>
+        <li><a href="https://blog.zachariasmanuel.com" class="nav__link" target="_blank" rel="noopener noreferrer">Blog</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
       </ul>
+    </div>
+  </nav>
 
-      <ul class="social">
-        <li><a href="https://github.com/zachariasmanuel" target="_blank" class="fa fa-github" onclick="ga('send', 'event', 'navigation', 'github_side', 'click');"></a></li>
-        <li><a href="https://twitter.com/zacmanuel_" target="_blank" class="fa fa-twitter" onclick="ga('send', 'event', 'navigation', 'twitter_side', 'click');"></a></li>
-        <li><a href="https://www.instagram.com/zachariasmanuel/" target="_blank" class="fa fa-instagram" onclick="ga('send', 'event', 'navigation', 'instagram_side', 'click');"></a></li>
-      </ul>
-
-    </br><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul class="mobile-menu__links">
+      <li><a href="#about" class="mobile-menu__link">About</a></li>
+      <li><a href="#career" class="mobile-menu__link">Career</a></li>
+      <li><a href="https://blog.zachariasmanuel.com" class="mobile-menu__link" target="_blank" rel="noopener noreferrer">Blog</a></li>
+      <li><a href="#contact" class="mobile-menu__link">Contact</a></li>
+    </ul>
   </div>
 
-  <aside style="background-image: url(img/zac_profile.jpg);"></aside>
-  <main>
-    <h1 class="mb-0">Hi, I'm Zacharias Manuel</h1>
-    <div class="mb-5">
-      <p class="lead mb-3">Technology Enthusiast</p>
-      <p>A technophile by nature, my passion lies at the convergence of technology and entrepreneurship whereby the power of each comes together to create positive impacts in the world. And yes, I am absolutely excited by the possibilities of AI.</p>
-      <p>Professionally, I have worn many hats. This has ranged from starting out as a software developer to working alongside the founders at <a class="main-page-link" href="career.html" onclick="ga('send', 'event', 'navigation', 'startup_village', 'click');">Startup Village</a>, a first of its kind startup incubator. Along the way, I also enjoyed pushing my skills and cracking challenges to co-create <a class="main-page-link" href="career.html" onclick="ga('send', 'event', 'navigation', 'fin', 'click');">Fin</a>, a wearable smart ring that reads finger gestures to control electronic devices. As a firm believer in the inherent faculty of communities, I co-founded Google Developer Group Cochin and led Blackberry’s Innovation Zone, Rubus Labs. Currently, I am steering the engineering team of <a class="main-page-link" href="career.html" onclick="ga('send', 'event', 'navigation', 'tricog', 'click');">Tricog</a>, one of the largest names in predictive healthcare analytics in the world.</p>
-      <p>When I’m not sweating my brain on a 20% project that makes life easier, you could find me offroading along the hillsides of my native town or tapping my feet to some good music!</p>
-      <!-- <p>Commodi, neque debitis atque cum quod, culpa repellendus voluptatum voluptatem, molestiae dicta laborum nulla corporis illum, ratione rerum quibusdam ea optio! Consectetur obcaecati facilis esse reprehenderit ipsam, facere dolorem incidunt.</p> -->
-    </div>
+  <!-- ─── Hero ─── -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <p class="hero__greeting reveal">Hi, I'm</p>
+        <h1 class="hero__name reveal">Zacharias <span class="gradient-text">Manuel</span></h1>
+        <p class="hero__subtitle reveal">Technology Enthusiast</p>
+        <p class="hero__tagline reveal">Passionate about the convergence of technology &amp; entrepreneurship to create positive impacts in the world.</p>
 
-    <p>
-      <a href="https://blog.zachariasmanuel.com" target="_blank" class="mr-2 mb-2" onclick="ga('send', 'event', 'navigation', 'blog_main', 'click');">Blog</a>
-      <a href="https://www.linkedin.com/in/zachariasmanuel" target="_blank" class="mr-2 mb-2" onclick="ga('send', 'event', 'navigation', 'linkedin_main', 'click');">LinkedIn</a>
-      <a href="https://stackoverflow.com/users/1112879/zacharias-manuel?tab=profile" target="_blank" class="mr-2 mb-2" onclick="ga('send', 'event', 'navigation', 'stackoverflow_main', 'click');">StackOverflow</a>
-      <a href="https://www.facebook.com/zachariasmanuel" target="_blank" class="mr-2 mb-2" onclick="ga('send', 'event', 'navigation', 'facebook_main', 'click');">Facebook</a> 
-
-    </p>
-        <!-- <h2 class="mb-4 mt-5">Services</h2>
-        <div class="row">
-          <div class="col-md-6 col-lg-6 mb-4">
-            <div class="media custom-media  d-block">
-              <div class="icon mr-3"><span class="ion-android-cart"></span></div>
-              <div class="media-body">
-                <h3 class="mt-0"><a href="#">eCommerce Websites</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed obcaecati totam.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-6 mb-4">
-            <div class="media custom-media  d-block">
-              <div class="icon mr-3"><span class="ion-bonfire"></span></div>
-              <div class="media-body">
-                <h3 class="mt-0"><a href="#">Branding Identity </a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed obcaecati, totam.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-6 mb-4">
-            <div class="media custom-media  d-block">
-              <div class="icon mr-3"><span class="ion-videocamera"></span></div>
-              <div class="media-body">
-                <h3 class="mt-0"><a href="#">Video Editing</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed obcaecati totam.</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-md-6 col-lg-6 mb-4">
-            <div class="media custom-media  d-block">
-              <div class="icon mr-3"><span class="ion-cube"></span></div>
-              <div class="media-body">
-                <h3 class="mt-0"><a href="#">Web Applications </a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed obcaecati, totam.</p>
-              </div>
-            </div>
-          </div> -->
+        <div class="hero__socials reveal">
+          <!-- GitHub -->
+          <a href="https://github.com/zachariasmanuel" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <!-- Twitter/X -->
+          <a href="https://twitter.com/zacmanuel_" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="social-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16h-4.267z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/zachariasmanuel" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/zachariasmanuel/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
         </div>
-        
-      </main>
+
+        <a href="#career" class="hero__cta reveal">
+          View my career
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        </a>
+      </div>
+
+      <div class="hero__image-wrapper reveal">
+        <div class="hero__image-glow"></div>
+        <img src="img/zac_profile.jpg" alt="Zacharias Manuel" class="hero__image" width="400" height="400">
+      </div>
     </div>
+  </section>
 
-    <!-- loader -->
-    <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
+  <!-- ─── About ─── -->
+  <section class="about section" id="about">
+    <div class="container">
+      <h2 class="section__title reveal">About Me</h2>
+      <div class="about__content">
+        <p class="reveal">A technophile by nature, my passion lies at the convergence of technology and entrepreneurship whereby the power of each comes together to create positive impacts in the world. And yes, I am absolutely excited by the possibilities of AI.</p>
+        <p class="reveal">Professionally, I have worn many hats. This has ranged from starting out as a software developer to working alongside the founders at <a href="#career">Startup Village</a>, a first of its kind startup incubator. Along the way, I also enjoyed pushing my skills and cracking challenges to co-create <a href="#career">Fin</a>, a wearable smart ring that reads finger gestures to control electronic devices. As a firm believer in the inherent faculty of communities, I co-founded Google Developer Group Cochin and led Blackberry's Innovation Zone, Rubus Labs. Currently, I am steering the engineering team of <a href="#career">Tricog</a>, one of the largest names in predictive healthcare analytics in the world.</p>
+        <p class="reveal">When I'm not sweating my brain on a 20% project that makes life easier, you could find me offroading along the hillsides of my native town or tapping my feet to some good music!</p>
+      </div>
+    </div>
+  </section>
 
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/main.js"></script>
-    <!-- https://colorlib.com/wp/template/personify/ -->
+  <!-- ─── Career Timeline ─── -->
+  <section class="career section" id="career">
+    <div class="container">
+      <h2 class="section__title reveal">Career</h2>
 
-  </body>
-  </html>
+      <!-- Professional Experience -->
+      <h3 class="career__category reveal">Professional Experience</h3>
+      <div class="timeline">
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass">
+            <span class="timeline__date">Jun 2019 — Present</span>
+            <h4 class="timeline__role">Tricog Health</h4>
+            <p class="timeline__desc">Tricog is one of the world's largest predictive healthcare analytics firms. Tricog leverages its deep medical and technology expertise, to provide Virtual Cardiology Services to remote clinics.</p>
+            <div class="timeline__sub">
+              <div class="timeline__sub-item">
+                <div class="timeline__sub-dot"></div>
+                <h5 class="timeline__sub-role">AVP - Engineering</h5>
+                <span class="timeline__sub-date">Jan 2026 — Present</span>
+              </div>
+              <div class="timeline__sub-item">
+                <div class="timeline__sub-dot"></div>
+                <h5 class="timeline__sub-role">Director of Engineering</h5>
+                <span class="timeline__sub-date">Jan 2024 — Dec 2025</span>
+              </div>
+              <div class="timeline__sub-item">
+                <div class="timeline__sub-dot"></div>
+                <h5 class="timeline__sub-role">Engineering Manager</h5>
+                <span class="timeline__sub-date">Jan 2023 — Dec 2023</span>
+              </div>
+              <div class="timeline__sub-item">
+                <div class="timeline__sub-dot"></div>
+                <h5 class="timeline__sub-role">Mobile Architect</h5>
+                <span class="timeline__sub-date">Jun 2019 — Dec 2022</span>
+              </div>
+            </div>
+            <span class="timeline__badge timeline__badge--pro">Professional</span>
+          </div>
+        </div>
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass">
+            <span class="timeline__date">2016 — 2017</span>
+            <h4 class="timeline__role">VP of Engineering</h4>
+            <p class="timeline__company">Flipmotion, Inc.</p>
+            <p class="timeline__desc">A hardware startup from India, developed an activity tracker to monitor the tricks and activities on a skateboard/longboard.</p>
+            <span class="timeline__badge timeline__badge--pro">Professional</span>
+          </div>
+        </div>
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass">
+            <span class="timeline__date">2014 — 2016</span>
+            <h4 class="timeline__role">Android Head</h4>
+            <p class="timeline__company">Fin Robotics, Inc.</p>
+            <p class="timeline__desc">Fin Robotics is a VC/Crowd funded startup developed a small wearable gadget (Neyya Ring) that helps users to control their digital world.</p>
+            <span class="timeline__badge timeline__badge--pro">Professional</span>
+          </div>
+        </div>
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass">
+            <span class="timeline__date">2012 — 2014</span>
+            <h4 class="timeline__role">Technical Head</h4>
+            <p class="timeline__company">Startup Village</p>
+            <p class="timeline__desc">Startup Village was India's first PPP model technology business incubator which incubated 1000+ technology startup companies and won technology business incubator award.</p>
+            <span class="timeline__badge timeline__badge--pro">Professional</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Community Activities -->
+      <h3 class="career__category reveal">Community Activities</h3>
+      <div class="timeline">
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass">
+            <span class="timeline__date">2013 — 2016</span>
+            <h4 class="timeline__role">Elite Developer</h4>
+            <p class="timeline__company">BlackBerry</p>
+            <p class="timeline__desc">Led Rubus Labs, the first Blackberry Innovation Zone in Asia-Pacific region. I am a certified Blackberry developer trainer also.</p>
+            <span class="timeline__badge timeline__badge--community">Community</span>
+          </div>
+        </div>
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass">
+            <span class="timeline__date">2013 — 2016</span>
+            <h4 class="timeline__role">Manager</h4>
+            <p class="timeline__company">Google Developers Group Cochin</p>
+            <p class="timeline__desc">Cofounded the Google developer group Cochin chapter. Coordinated developer group activities and served as a trainer of Android technologies.</p>
+            <span class="timeline__badge timeline__badge--community">Community</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Consulting -->
+      <h3 class="career__category reveal">Consulting</h3>
+      <div class="timeline">
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass">
+            <span class="timeline__date">2018</span>
+            <h4 class="timeline__role">Android Developer</h4>
+            <p class="timeline__company">Rankjunction</p>
+            <p class="timeline__desc">Rank Junction.com is unique testing platform for candidates of a prospective exam to come together at pre-scheduled time, take the test and get their ranks in advance.</p>
+            <span class="timeline__badge timeline__badge--consulting">Consulting</span>
+          </div>
+        </div>
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card glass">
+            <span class="timeline__date">2018</span>
+            <h4 class="timeline__role">Technical Mentor</h4>
+            <p class="timeline__company">RSSEP — Rajasthan Government</p>
+            <p class="timeline__desc">The IT department of Rajasthan government's initiative. The 100 selected students from the colleges got fully paid trip to Silicon Valley, US. The main aim of the programme is to encourage college students to take to technological innovations, to encourage them to come up with digital solutions to real-life problems and also to transform their ideas into successful businesses.</p>
+            <span class="timeline__badge timeline__badge--consulting">Consulting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Contact ─── -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <h2 class="section__title reveal">Get in Touch</h2>
+      <p class="contact__intro reveal">Email is the preferred way to contact me.</p>
+
+      <a href="mailto:zac@zachariasmanuel.com" class="contact__email glass reveal" aria-label="Send email to zac@zachariasmanuel.com">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>zac@zachariasmanuel.com</span>
+      </a>
+
+      <div class="contact__socials reveal">
+        <!-- GitHub -->
+        <a href="https://github.com/zachariasmanuel" target="_blank" rel="noopener noreferrer" class="contact__social glass" aria-label="GitHub">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <span>GitHub</span>
+        </a>
+
+        <!-- Twitter/X -->
+        <a href="https://twitter.com/zacmanuel_" target="_blank" rel="noopener noreferrer" class="contact__social glass" aria-label="Twitter">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16h-4.267z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+          <span>Twitter / X</span>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/zachariasmanuel/" target="_blank" rel="noopener noreferrer" class="contact__social glass" aria-label="Instagram">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <span>Instagram</span>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/zachariasmanuel" target="_blank" rel="noopener noreferrer" class="contact__social glass" aria-label="LinkedIn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <span>LinkedIn</span>
+        </a>
+
+        <!-- StackOverflow -->
+        <a href="https://stackoverflow.com/users/1112879/zacharias-manuel?tab=profile" target="_blank" rel="noopener noreferrer" class="contact__social glass" aria-label="StackOverflow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h14"/><path d="M4 20V10"/><path d="M18 20V10"/><path d="M6 16h10"/><path d="M6.8 12.4l9.8 1.7"/><path d="M8.4 8.9l9.2 3.9"/><path d="M11 6l7.7 6.2"/></svg>
+          <span>StackOverflow</span>
+        </a>
+
+        <!-- Blog -->
+        <a href="https://blog.zachariasmanuel.com" target="_blank" rel="noopener noreferrer" class="contact__social glass" aria-label="Blog">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <span>Blog</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ─── -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__text">Built by Zacharias Manuel | <span id="footerYear"></span></p>
+      <div class="footer__socials">
+        <a href="https://github.com/zachariasmanuel" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+        <a href="https://twitter.com/zacmanuel_" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16h-4.267z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/zachariasmanuel" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
