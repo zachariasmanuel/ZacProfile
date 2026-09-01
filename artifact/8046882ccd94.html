@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="CallAgent — a USB LTE modem turned into a programmable, fully-local AI phone line. Project note, open-source plans, and the intern role.">
+<style>
+  :root { color-scheme: light dark; }
+  html, body { margin: 0; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+<title>CallAgent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap">
+<style>
+  :root {
+    --paper:      #E8EAEB;
+    --surface:    #F6F7F7;
+    --ink:        #14171A;
+    --ink-soft:   #4E565B;
+    --ink-faint:  #767F85;
+    --rule:       #C6CBCE;
+    --rule-soft:  #DADEE0;
+    --accent:     #7A5B10;
+    --accent-bg:  #EDE3C9;
+    --signal:     #1B655D;
+
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body: "Newsreader", Georgia, "Times New Roman", serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --measure: 34rem;
+    --pad: clamp(1.25rem, 5vw, 3rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:     #111417;
+      --surface:   #181B1F;
+      --ink:       #E6E9EA;
+      --ink-soft:  #9AA3A9;
+      --ink-faint: #79838A;
+      --rule:      #2B3136;
+      --rule-soft: #21262A;
+      --accent:    #D4A63C;
+      --accent-bg: #2A2317;
+      --signal:    #4EA79B;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:     #111417;
+    --surface:   #181B1F;
+    --ink:       #E6E9EA;
+    --ink-soft:  #9AA3A9;
+    --ink-faint: #79838A;
+    --rule:      #2B3136;
+    --rule-soft: #21262A;
+    --accent:    #D4A63C;
+    --accent-bg: #2A2317;
+    --signal:    #4EA79B;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 58rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 4.5rem) var(--pad) 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2.5rem, 5vw, 3.75rem);
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* ---- masthead ---- */
+
+  .masthead { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .masthead h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 7.5vw, 4.25rem);
+    line-height: 0.98;
+    letter-spacing: -0.028em;
+    text-wrap: balance;
+    margin: 0;
+    max-width: 16ch;
+  }
+
+  .masthead h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .standfirst {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: var(--measure);
+    font-weight: 300;
+    margin: 0;
+  }
+
+  .byline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    align-items: baseline;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+  }
+
+  .byline strong { color: var(--ink-soft); font-weight: 500; }
+
+  .byline a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+  /* ---- prose ---- */
+
+  section { display: flex; flex-direction: column; gap: 1rem; }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.0625rem;
+    letter-spacing: -0.008em;
+    margin: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  p { margin: 0; max-width: var(--measure); }
+
+  .lede { font-size: 1.125rem; }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    color: var(--accent);
+    background: var(--accent-bg);
+    padding: 0.08em 0.32em;
+    border-radius: 2px;
+  }
+
+  /* ---- the two builds ---- */
+
+  .builds {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .build {
+    background: var(--surface);
+    padding: 1.5rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .build h3 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+
+  .build h3 span {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.4rem;
+  }
+
+  .build p { font-size: 0.9875rem; color: var(--ink-soft); max-width: none; }
+
+  .stack {
+    margin-top: auto;
+    padding-top: 0.9rem;
+    border-top: 1px dashed var(--rule);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    line-height: 1.7;
+    color: var(--ink-faint);
+    letter-spacing: 0.01em;
+  }
+
+  /* ---- signal chain ---- */
+
+  .chain-wrap { overflow-x: auto; padding-bottom: 0.5rem; }
+
+  .chain {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    min-width: 34rem;
+    font-family: var(--mono);
+  }
+
+  .node {
+    flex: 1;
+    padding: 0.85rem 0.6rem;
+    border: 1px solid var(--rule);
+    background: var(--surface);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+    justify-content: center;
+  }
+
+  .node b {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+
+  .node i {
+    font-style: normal;
+    font-size: 0.65rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+  }
+
+  .node.edge { background: var(--accent-bg); border-color: var(--accent); }
+  .node.edge b { color: var(--accent); }
+  .node.edge i { color: var(--accent); opacity: 0.75; }
+
+  .link {
+    flex: 0 0 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--rule);
+    font-size: 0.7rem;
+  }
+
+  .chain-note {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+
+  /* ---- hard parts ---- */
+
+  .parts { display: flex; flex-direction: column; gap: 0; }
+
+  .part {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: 0 1.5rem;
+    padding: 1.05rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+
+  .part:first-child { border-top: 1px solid var(--rule-soft); }
+
+  .part dt {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--signal);
+    padding-top: 0.28rem;
+  }
+
+  .part dd { margin: 0; font-size: 1rem; color: var(--ink-soft); }
+  .part dd strong { color: var(--ink); font-weight: 500; }
+
+  @media (max-width: 34rem) {
+    .part { grid-template-columns: 1fr; gap: 0.35rem; }
+    .part dt { padding-top: 0; }
+  }
+
+  /* ---- facts ---- */
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .fact {
+    background: var(--surface);
+    padding: 1rem 1rem 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .fact b {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .fact span {
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* ---- closing ---- */
+
+  .byline .flag {
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.12rem 0.5rem;
+  }
+
+  .roles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .role {
+    background: var(--surface);
+    padding: 1.4rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .role dt {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--signal);
+  }
+
+  .role h3 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: -0.012em;
+    margin: 0;
+  }
+
+  .role dd { margin: 0; font-size: 0.9875rem; color: var(--ink-soft); }
+
+  .closing {
+    border-left: 2px solid var(--accent);
+    padding-left: 1.25rem;
+  }
+
+  .closing p + p { margin-top: 0.75rem; }
+
+  .status {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    line-height: 1.7;
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+  }
+
+  a:focus-visible, :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="masthead">
+    <div class="eyebrow">Project note · Personal work</div>
+    <h1>A SIM card you can <em>program</em>.</h1>
+    <p class="standfirst">Programmatic telephony is gated behind business registration everywhere — Twilio, Telnyx, and the regional CPaaS alike. CallAgent gives an individual the same thing from a USB LTE modem and a SIM they already own, with the call audio never leaving their machine.</p>
+    <div class="byline">
+      <strong>Zacharias Manuel</strong>
+      <span>Two codebases · Python + Rust</span>
+      <span>Validated on real hardware, macOS &amp; Linux</span>
+      <span class="flag">Going open source · Hiring an intern</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>What it does</h2>
+    <p class="lede">A Quectel EG21-G modem plugs into USB and presents two things at once: an AT-command control channel and a USB Audio Class sound card. CallAgent drives both — it places and answers real calls, streams the 8&nbsp;kHz call audio through speech recognition, an LLM, and speech synthesis, and puts the reply back on the line fast enough to hold a conversation. Barge-in works: talk over the agent and it stops.</p>
+  </section>
+
+  <section>
+    <h2>The audio path</h2>
+    <div class="chain-wrap">
+      <div class="chain">
+        <div class="node edge"><b>Modem</b><i>UAC in</i></div>
+        <div class="link">→</div>
+        <div class="node"><b>VAD</b><i>gate + barge-in</i></div>
+        <div class="link">→</div>
+        <div class="node"><b>STT</b><i>Whisper</i></div>
+        <div class="link">→</div>
+        <div class="node"><b>LLM</b><i>Gemma / API</i></div>
+        <div class="link">→</div>
+        <div class="node"><b>TTS</b><i>Kokoro</i></div>
+        <div class="link">→</div>
+        <div class="node edge"><b>Modem</b><i>UAC out</i></div>
+      </div>
+    </div>
+    <p class="chain-note">Half-duplex — the gate cuts synthesis the moment the caller speaks.</p>
+  </section>
+
+  <section>
+    <h2>Two builds, same stack</h2>
+    <div class="builds">
+      <article class="build">
+        <h3><span>Developer tool</span>callagent</h3>
+        <p>A pip-installable CLI and aiohttp server with a Twilio-compatible API, so existing agent stacks drop straight in. Every stage is pluggable — cloud providers when you want them, fully local speech when you don't. Ships with a mock modem driver, so the whole test suite runs with no hardware attached.</p>
+        <div class="stack">Python 3.10–3.12 · libusb · aiohttp<br>Deepgram / faster-whisper / MLX<br>Kokoro TTS on Apple GPU<br>OpenClaw plugin (TypeScript)</div>
+      </article>
+      <article class="build">
+        <h3><span>Consumer app</span>Desktop App</h3>
+        <p>The same pipeline rebuilt natively so it ships as one installer: a menu-bar app that answers your phone with no Python, no Docker, and no API keys. Models download once, then it runs entirely offline. Keeps a searchable call history with transcripts and generated summaries.</p>
+        <div class="stack">Rust + Tauri · React · SQLite<br>whisper.cpp · llama.cpp · ONNX Runtime<br>Gemma fetched on first launch<br>macOS / Windows / Linux</div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>The parts that were actually hard</h2>
+    <dl class="parts">
+      <div class="part">
+        <dt>USB</dt>
+        <dd>macOS won't expose the modem's interfaces as serial ttys, so AT control talks <strong>directly to USB bulk endpoints via libusb</strong> — interface 2 of an eight-interface composite device. Matching on vendor ID alone grabs the wrong Quectel; it takes VID <em>and</em> PID.</dd>
+      </div>
+      <div class="part">
+        <dt>Real-time</dt>
+        <dd>Control and audio are separate transports that have to stay in sync. Getting <strong>PCM registration ordered correctly around answer and hangup</strong> was the difference between a working call and a wedged engine that killed the next one too.</dd>
+      </div>
+      <div class="part">
+        <dt>Inference</dt>
+        <dd>Porting the speech stack to Rust meant <strong>reverse-engineering IndicConformer's log-mel featurizer</strong> to run the model on pure ONNX Runtime — no PyTorch, no Python sidecar, no 2&nbsp;GB dependency in a desktop installer.</dd>
+      </div>
+      <div class="part">
+        <dt>Judgment</dt>
+        <dd>The server was specced in Go and <strong>I reversed the decision to Python</strong> once the speech stack existed: CGo negated Go's single-binary win, and local GPU inference had no Go equivalent. The reasoning is written down in the repo, tradeoff included.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section>
+    <h2>By the numbers</h2>
+    <div class="facts">
+      <div class="fact"><b>9,500</b><span>lines of Rust</span></div>
+      <div class="fact"><b>2,800</b><span>lines of Python</span></div>
+      <div class="fact"><b>3</b><span>hardware prototypes</span></div>
+      <div class="fact"><b>8&nbsp;kHz</b><span>live audio path</span></div>
+      <div class="fact"><b>0</b><span>cloud dependencies</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why it's going open source</h2>
+    <p class="lede">I started this to solve my own problem — I wanted my phone number to be programmable and found out I wasn't allowed to have that. Then I kept meeting people with the same problem: someone who wants an agent to screen their calls, take a message while they're driving, or send a reminder SMS, and who owns a number they simply can't program.</p>
+    <p>That isn't a niche, it's a locked door with a lot of people behind it — and the honest answer is that it gets opened faster in the open than by me alone. The hardware layer especially: every modem is its own dialect of AT commands, and no one person owns enough of them to write the driver everyone needs. So the plan is to open the repos, publish the hard-won hardware notes, and build the project around the people who show up.</p>
+  </section>
+
+  <section>
+    <h2>Where an intern comes in</h2>
+    <p>This is a full picture of building a product, not one slice of it — three tracks, all real, all with something to show at the end.</p>
+    <dl class="roles">
+      <div class="role">
+        <dt>Track — Product</dt>
+        <h3>Build and stabilize</h3>
+        <dd>Ship features and make them hold up: the modem drivers, call reliability, SMS, the agent loop, the desktop app's rough edges. Real hardware, real bugs, real users on the other end of the line — and code review from someone who has already been down each of these holes.</dd>
+      </div>
+      <div class="role">
+        <dt>Track — Community</dt>
+        <h3>Show up on Reddit</h3>
+        <dd>The people this is for are already on r/selfhosted, r/LocalLLaMA, r/homelab and the AI-agent subs, describing this exact problem. Post the work, answer the hardware questions, run the early-tester loop, and bring what you hear back into the roadmap. Community work is product work here.</dd>
+      </div>
+      <div class="role">
+        <dt>Track — Marketing site</dt>
+        <h3>Make the case</h3>
+        <dd>Design and build the product website: the positioning, the install story, the docs that stop someone bouncing at "which modem do I buy?" A project like this lives or dies on whether a stranger understands it in thirty seconds.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="closing">
+    <p>What I can offer is unusual for an internship: hardware you can hold, a codebase small enough to understand completely, and public work with your name on it from week one. What I'd want back is someone who finishes things and doesn't mind that the unglamorous half — USB descriptors, frame timing, calls that connect but stay silent — is most of the job.</p>
+    <p>Happy to walk through the modem driver or the Rust port in detail, or just demo a live call.</p>
+  </section>
+
+  <div class="status">
+    STATUS — callagent: alpha, validated end-to-end on a Quectel EG21-G.<br>
+    Desktop app: pre-alpha; shell works on Apple Silicon, heavy native integrations behind feature flags.<br>
+    IN PROGRESS — porting the modem driver to a SIMCom module.
+  </div>
+
+</div>
+</body>
+</html>
